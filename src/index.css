@@ -1,0 +1,112 @@
+:root {
+  --acero: #2b3a42;
+  --acero-oscuro: #1d282e;
+  --amarillo: #f2b705;
+  --fondo: #e8ecef;
+  --papel: #ffffff;
+  --texto: #1f2a30;
+  --rojo: #c8402f;
+}
+
+* { box-sizing: border-box; }
+body {
+  margin: 0;
+  font-family: 'Segoe UI', Tahoma, sans-serif;
+  background: var(--fondo);
+  color: var(--texto);
+}
+h1, h2, h3 { font-family: 'Franklin Gothic Medium', 'Arial Narrow', sans-serif; font-weight: normal; }
+
+/* ---------- Estructura: barra lateral + contenido ---------- */
+.layout { display: flex; min-height: 100vh; }
+.lateral {
+  width: 230px;
+  background: var(--acero);
+  color: #fff;
+  padding: 26px 18px;
+  display: flex;
+  flex-direction: column;
+  position: sticky;
+  top: 0;
+  height: 100vh;
+}
+.marca h1 { margin: 0; font-size: 30px; letter-spacing: 0.5px; }
+.marca p { margin: 4px 0 28px; color: #aab7bd; font-size: 14px; }
+.lateral nav { display: flex; flex-direction: column; gap: 4px; }
+.lateral nav button {
+  text-align: left;
+  background: transparent;
+  color: #dfe6e9;
+  border: none;
+  border-left: 4px solid transparent;
+  padding: 11px 12px;
+  font-size: 15px;
+  cursor: pointer;
+  border-radius: 0 6px 6px 0;
+}
+.lateral nav button:hover { background: var(--acero-oscuro); }
+.lateral nav button.activo {
+  background: var(--acero-oscuro);
+  border-left-color: var(--amarillo);
+  color: #fff;
+  font-weight: 600;
+}
+.resumen { margin-top: auto; font-size: 13px; color: #aab7bd; line-height: 1.6; }
+
+main { flex: 1; padding: 28px 34px; max-width: 1100px; }
+main h2 { font-size: 28px; margin: 0 0 16px; }
+
+/* ---------- Avisos ---------- */
+.aviso { margin: 0 0 16px; padding: 10px 14px; background: var(--papel); border-left: 5px solid; border-radius: 4px; font-weight: 600; }
+.aviso.ok { border-color: #2e8b57; color: #1f6b41; }
+.aviso.error { border-color: var(--rojo); color: var(--rojo); }
+
+/* ---------- Formularios ---------- */
+.panel { background: var(--papel); padding: 14px 16px; border-radius: 4px; margin-bottom: 18px; border: 1px solid #d3dade; }
+.formulario { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; }
+.formulario label { font-weight: 600; font-size: 14px; }
+input, select { padding: 8px 10px; border: 1px solid #b9c4ca; border-radius: 4px; font-size: 14px; background: #fff; }
+input:focus, select:focus, button:focus-visible { outline: 3px solid var(--amarillo); outline-offset: 1px; }
+
+/* ---------- Botones ---------- */
+.btn { padding: 8px 14px; border: none; background: var(--amarillo); color: #1d1d1d; font-weight: 600; border-radius: 4px; cursor: pointer; font-size: 14px; }
+.btn:hover { filter: brightness(0.93); }
+.btn.suave { background: #dde3e7; color: var(--texto); }
+.btn.peligro { background: transparent; color: var(--rojo); box-shadow: inset 0 0 0 2px var(--rojo); }
+
+/* ---------- Productos como etiquetas de estante ---------- */
+.estante { display: grid; grid-template-columns: repeat(auto-fill, minmax(215px, 1fr)); gap: 16px; }
+.etiqueta {
+  position: relative;
+  background: var(--papel);
+  border: 1px solid #cfd7dc;
+  border-top: 8px solid var(--acero);
+  border-radius: 4px 4px 14px 14px;
+  padding: 26px 16px 14px;
+}
+.etiqueta.poco { border-top-color: var(--rojo); }
+.agujero { position: absolute; top: 8px; left: 50%; width: 12px; height: 12px; margin-left: -6px; border-radius: 50%; background: var(--fondo); border: 1px solid #b9c4ca; }
+.codigo { margin: 0; font-size: 12px; color: #66767e; }
+.etiqueta h3 { margin: 6px 0 10px; font-size: 19px; line-height: 1.2; min-height: 46px; }
+.precio { margin: 0; font-size: 34px; font-family: 'Franklin Gothic Medium', 'Arial Narrow', sans-serif; }
+.existencia { margin: 4px 0 14px; font-size: 14px; color: #3d4d55; }
+.etiqueta.poco .existencia { color: var(--rojo); font-weight: 700; }
+.acciones { display: flex; gap: 8px; }
+
+/* ---------- Tablas ---------- */
+table { width: 100%; border-collapse: collapse; background: var(--papel); border: 1px solid #d3dade; }
+th { background: var(--acero); color: #fff; text-align: left; padding: 10px; font-weight: 600; font-size: 14px; }
+td { padding: 10px; border-bottom: 1px solid #e3e8eb; }
+tbody tr:nth-child(even) { background: #f5f7f8; }
+.total { font-size: 20px; margin: 16px 0 10px; }
+.total strong { font-size: 28px; }
+
+/* ---------- Pantallas pequeñas ---------- */
+@media (max-width: 760px) {
+  .layout { flex-direction: column; }
+  .lateral { width: 100%; height: auto; position: static; padding: 16px; }
+  .marca p { margin-bottom: 12px; }
+  .lateral nav { flex-direction: row; flex-wrap: wrap; }
+  .resumen { display: none; }
+  main { padding: 18px; }
+}
